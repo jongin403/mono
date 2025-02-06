@@ -1,5 +1,5 @@
 {
-  "name": "kitchen-sink",
+  "name": "mono",
   "private": true,
   "scripts": {
     "build": "turbo run build",
@@ -7,15 +7,26 @@
     "dev": "turbo run dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
+    "lint:fix": "turbo run lint -- --fix",
     "test": "turbo run test",
-    "typecheck": "turbo run typecheck"
+    "typecheck": "turbo run typecheck",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "**/*.{js,ts,tsx}": [
+      "pnpm lint:fix"
+    ]
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.7.1",
+    "@commitlint/config-conventional": "^19.7.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
     "prettier": "^3.4.2",
     "turbo": "^2.4.0"
   },
-  "packageManager": "pnpm@8.15.6",
+  "packageManager": "pnpm@10.2.0",
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   }
 }
