@@ -36,6 +36,9 @@ jobs:
       - name: 의존성 설치
         run: pnpm install
 
+      - name: 의존하는 패키지 빌드
+        run: pnpm build --filter=@repo/ui
+
       - name: Publish design-system to Chromatic
         uses: chromaui/action@latest
         with:
