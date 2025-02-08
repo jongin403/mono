@@ -1,0 +1,41 @@
+name: chromatic-storybook-deploy
+run-name: 크로마틱 스토리북 배포
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: '배포할 브랜치 입력'
+        required: true
+        default: 'develop'
+        type: string
+
+jobs:
+  chromatic:
+    name: Run Chromatic
+    runs-on: ubuntu-latest
+    steps:
+      - name: 코드 체크아웃
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch }}
+
+      - name: 선택한 브랜치 표시
+        run: |
+          echo "배포할 브랜치: ${{ github.event.inputs.branch }}"
+
+      - name: node 설치
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: pnpm 설치
+        uses: pnpm/action-setup@v4
+
+      - name: 의존성 설치
+        run: pnpm install
+
+      - name: Run Chromatic
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
