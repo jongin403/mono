@@ -35,8 +35,8 @@ jobs:
       - name: 의존성 설치
         run: pnpm install
 
-      - name: Run Chromatic
-        working-directory: ./apps/design-system
+      - name: Publish design-system to Chromatic
         uses: chromaui/action@latest
         with:
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          projectToken: ${{ secrets.DESIGN_SYSTEM__CHROMATIC_PROJECT_TOKEN }}
+          workingDir: apps/design-system
