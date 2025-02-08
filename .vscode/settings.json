@@ -5,5 +5,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "cSpell.words": ["commitlint", "tseslint"]
+  "cSpell.words": ["commitlint", "tseslint", "chromaui"]
 }
