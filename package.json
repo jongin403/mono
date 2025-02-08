@@ -10,7 +10,8 @@
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
     "prepare": "husky",
-    "filter:ds": "pnpm --filter design-system"
+    "filter:ds": "pnpm --filter design-system",
+    "filter:wt": "pnpm --filter web-tools"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",
