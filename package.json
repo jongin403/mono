@@ -7,15 +7,10 @@
     "dev": "turbo run dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
-    "lint:fix": "turbo run lint -- --fix",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
-    "prepare": "husky"
-  },
-  "lint-staged": {
-    "**/*.{js,ts,tsx}": [
-      "pnpm lint:fix"
-    ]
+    "prepare": "husky",
+    "filter:ds": "pnpm --filter design-system"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",
