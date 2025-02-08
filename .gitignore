@@ -3,3 +3,4 @@ node_modules
 dist
 .turbo
 *storybook.log
+storybook-static
