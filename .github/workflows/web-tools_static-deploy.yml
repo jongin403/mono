@@ -51,6 +51,7 @@ jobs:
         env:
           BUCKET_NAME: ${{ vars.BUCKET_NAME }}
         run: |
+          cd ./packages/web-tools
           aws s3 sync --region ap-northeast-2 ./dist s3://$BUCKET_NAME/web-tools-static --delete
 
       - name: CloudFront 캐시 무효화
