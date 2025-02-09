@@ -49,12 +49,12 @@ jobs:
 
       - name: S3에 빌드된 파일 업로드
         env:
-          BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
+          BUCKET_NAME: ${{ vars.BUCKET_NAME }}
         run: |
           aws s3 sync --region ap-northeast-2 ./dist s3://$BUCKET_NAME/web-tools-static --delete
 
-      - name: Cloudfront 캐시 무효화
+      - name: CloudFront 캐시 무효화
         env:
-          CLOUD_FRONT_ID: ${{ secrets.WEB_TOOLS__CLOUD_FRONT_DISTRIBUTION_ID }}
+          CLOUD_FRONT_ID: ${{ vars.WEB_TOOLS__CLOUD_FRONT_ID }}
         run: |
           aws cloudfront create-invalidation --distribution-id $CLOUD_FRONT_ID --paths "/*"
