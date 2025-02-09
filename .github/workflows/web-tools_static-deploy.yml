@@ -11,7 +11,7 @@ on:
         type: string
 
 jobs:
-  deploy-ui:
+  deploy-static:
     runs-on: ubuntu-latest
     steps:
       - name: 코드 체크아웃
@@ -59,3 +59,12 @@ jobs:
           CLOUD_FRONT_ID: ${{ vars.WEB_TOOLS__CLOUD_FRONT_ID }}
         run: |
           aws cloudfront create-invalidation --distribution-id $CLOUD_FRONT_ID --paths "/*"
+
+      - name: Slack 알림
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took,pullRequest
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.DEPLOY_NOTI_BOT_WEBHOOK_URL }}
+        if: always()
