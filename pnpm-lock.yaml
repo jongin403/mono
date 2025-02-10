@@ -262,6 +262,49 @@ importers:
         specifier: ^5.4.14
         version: 5.4.14(@types/node@22.13.1)
 
+  apps/portfolio:
+    dependencies:
+      '@repo/logger':
+        specifier: workspace:*
+        version: link:../../packages/logger
+      '@repo/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      next:
+        specifier: ^15.1.6
+        version: 15.1.6(@babel/core@7.26.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
+      react-dom:
+        specifier: ^18.3.1
+        version: 18.3.1(react@18.3.1)
+    devDependencies:
+      '@next/eslint-plugin-next':
+        specifier: ^15.1.6
+        version: 15.1.6
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/config-eslint
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/config-typescript
+      '@types/node':
+        specifier: ^22.12.0
+        version: 22.13.1
+      '@types/react':
+        specifier: ^18.3.18
+        version: 18.3.18
+      '@types/react-dom':
+        specifier: ^18.3.5
+        version: 18.3.5(@types/react@18.3.18)
+      eslint:
+        specifier: ^9.19.0
+        version: 9.19.0(jiti@2.4.2)
+      typescript:
+        specifier: 5.7.3
+        version: 5.7.3
+
   apps/storefront:
     dependencies:
       '@repo/logger':
