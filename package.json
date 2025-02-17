@@ -11,7 +11,9 @@
     "typecheck": "turbo run typecheck",
     "prepare": "husky",
     "filter:ds": "pnpm --filter design-system",
-    "filter:wt": "pnpm --filter web-tools"
+    "filter:pf": "pnpm --filter portfolio",
+    "filter:wt": "pnpm --filter web-tools",
+    "filter:ui": "pnpm --filter @repo/ui"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",
