@@ -38,3 +38,8 @@ This Turborepo has some additional tools already setup for you:
 - [ESLint](https://eslint.org/) for code linting
 - [Jest](https://jestjs.io) test runner for all things JavaScript
 - [Prettier](https://prettier.io) for code formatting
+
+### Apps
+
+- web-tools: http://localhost:3011
+- portfolio: http://localhost:3012
