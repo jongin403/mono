@@ -12,6 +12,7 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 
 # 4. 의존성 설치 (캐시 활용)
 COPY pnpm-workspace.yaml ./
+COPY pnpm-lock.yaml ./
 COPY package.json ./
 COPY apps/portfolio/package.json apps/portfolio/
 COPY packages/ui/package.json packages/ui/
