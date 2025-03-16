@@ -1,4 +1,4 @@
-import { CounterButton } from '@repo/ui/counter-button';
+import { CounterButton } from '@repo/ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 
