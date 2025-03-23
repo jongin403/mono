@@ -3,7 +3,7 @@ import { Checkbox } from 'radix-ui';
 import { CheckIcon } from '@radix-ui/react-icons';
 import styles from './styles.module.scss';
 
-const Select = () => (
+export const Select = () => (
   <form>
     <div style={{ display: 'flex', alignItems: 'center' }}>
       <Checkbox.Root className={styles.Root} defaultChecked id="c1">
@@ -17,5 +17,3 @@ const Select = () => (
     </div>
   </form>
 );
-
-export default Select;
