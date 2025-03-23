@@ -1,9 +1,11 @@
+#!/bin/bash
+
 # sprite 아이콘 생성
 # 실행 방법: ui 경로에서 ./generate-sprite.sh
 
 # 입력 및 출력 경로 설정
 ICONS_DIR="./src/sprite-icons"
-OUTPUT_FILE="./src/components/base/Icons/sprite.svg"
+OUTPUT_FILE="./public/sprite.svg"
 
 # 아이콘 폴더 존재 확인
 if [ ! -d "$ICONS_DIR" ]; then
@@ -21,16 +23,22 @@ for file in "$ICONS_DIR"/*.svg; do
     filename=$(basename -- "$file")
     id="${filename%.*}"  # 확장자 제거하여 id 생성
 
-    # viewBox 가져오기
+    # viewBox 가져오기 (없으면 기본값 적용)
     viewBox=$(grep -o 'viewBox="[^"]*"' "$file" | head -n 1)
     if [ -z "$viewBox" ]; then
       viewBox='viewBox="0 0 24 24"'
     fi
 
-    # <svg> 태그 안의 내용 추출하여 <symbol>로 변환
-    content=$(sed -n '/<svg/,/<\/svg>/p' "$file" | sed '1d;$d')  # 첫 줄(<svg>)과 마지막 줄(</svg>) 제거
+    # # SVG 태그에서 <svg>와 </svg>를 제거하고, 내용만 추출하여 symbol 안에 넣기
+    # svg_content=$(sed '1,/<\/svg>/d' "$file" | sed '/<svg>/d')
 
-    echo "  <symbol id=\"$id\" $viewBox>$content</symbol>" >> "$OUTPUT_FILE"
+    # # <symbol>에 SVG 내용을 삽입
+    # echo "  <symbol id=\"$id\" $viewBox>$svg_content</symbol>" >> "$OUTPUT_FILE"
+    # SVG 내용 추출 (첫 줄(<svg>)과 마지막 줄(</svg>)을 포함하여 전체 내용 추출)
+    svg_content=$(cat "$file")
+
+    # <symbol>에 SVG 내용을 삽입
+    echo "  <symbol id=\"$id\" $viewBox>$svg_content</symbol>" >> "$OUTPUT_FILE"
   fi
 done
 

@@ -1,17 +1,17 @@
 interface IconProps {
-  name: string;
+  id: string;
   size?: number;
   color?: string;
 }
 
 const Icon: React.FC<IconProps> = ({
-  name,
+  id,
   size = 24,
   color = 'currentColor',
 }) => {
   return (
     <svg width={size} height={size} fill={color} aria-hidden="true">
-      <use href={`/sprite.svg#${name}`} />
+      <use href={`/sprite.svg#${id}`} />
     </svg>
   );
 };

@@ -22,6 +22,16 @@ const meta: Meta<typeof Select> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+export const OneItem: Story = {
+  render: (args) => {
+    return (
+      <>
+        <Select {...args} />
+      </>
+    );
+  },
+};
+
 export const LoggedIn: Story = {
   args: {
     user: {
