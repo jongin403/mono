@@ -10,12 +10,10 @@ type TIcon = {
   color?: string;
 };
 
-const Icon = ({ id, size = 24, color = 'currentColor' }: TIcon) => {
+export const Icon = ({ id, size = 24, color = 'currentColor' }: TIcon) => {
   return (
     <svg width={size} height={size} style={{ color }} aria-hidden="true">
       <use href={`${SPRITE_IMAGE_PATH}#${id}`} />
     </svg>
   );
 };
-
-export default Icon;
