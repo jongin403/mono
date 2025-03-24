@@ -5,7 +5,8 @@
 
 # 입력 및 출력 경로 설정
 ICONS_DIR="./src/sprite-icons"
-OUTPUT_FILE="./public/sprite.svg"
+OUTPUT_SVG="./public/sprite.svg"
+OUTPUT_TS="./src/components/base/Icon/iconIdList.ts"
 
 # 아이콘 폴더 존재 확인
 if [ ! -d "$ICONS_DIR" ]; then
@@ -13,9 +14,12 @@ if [ ! -d "$ICONS_DIR" ]; then
   exit 1
 fi
 
+# 아이콘 리스트 생성
+ICON_LIST=()
+
 # SVG 헤더 추가
-echo '<!-- Auto-generated file -->' > "$OUTPUT_FILE"
-echo '<svg xmlns="http://www.w3.org/2000/svg" style="display:none;">' >> "$OUTPUT_FILE"
+echo '<!-- Auto-generated file -->' > "$OUTPUT_SVG"
+echo '<svg xmlns="http://www.w3.org/2000/svg" style="display:none;">' >> "$OUTPUT_SVG"
 
 # 각 SVG 파일을 <symbol>로 변환하여 sprite.svg에 추가
 for file in "$ICONS_DIR"/*.svg; do
@@ -29,13 +33,24 @@ for file in "$ICONS_DIR"/*.svg; do
       viewBox='viewBox="0 0 24 24"'
     fi
 
-    # # <symbol>에 SVG 내용을 삽입
+    # <symbol>에 SVG 내용을 삽입
     svg_content=$(cat "$file")
-    echo "  <symbol id=\"$id\" $viewBox>$svg_content</symbol>" >> "$OUTPUT_FILE"
+    echo "  <symbol id=\"$id\" $viewBox>$svg_content</symbol>" >> "$OUTPUT_SVG"
+
+    # ICON_LIST에 아이콘 추가
+    ICON_LIST+=("$id")
   fi
 done
 
 # SVG 닫기
-echo '</svg>' >> "$OUTPUT_FILE"
+echo '</svg>' >> "$OUTPUT_SVG"
 
-echo "✅ sprite.svg 생성 완료 (${ICONS_DIR} 내 아이콘 병합)"
+# TypeScript 파일 생성 (아이콘 목록만 포함)
+echo "// Auto-generated file" > "$OUTPUT_TS"
+echo "export const iconIdList = [" >> "$OUTPUT_TS"
+for icon in "${ICON_LIST[@]}"; do
+  echo "  '$icon'," >> "$OUTPUT_TS"
+done
+echo "] as const;" >> "$OUTPUT_TS"
+
+echo "✅ sprite.svg와 iconIdType.ts 생성 완료!"

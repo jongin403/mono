@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import Icon from '.';
+import { iconIdList } from './iconIdList';
 
 const meta: Meta<typeof Icon> = {
   title: 'Example/Icon',
@@ -20,9 +21,12 @@ export const OneItem: Story = {
   render: (args) => {
     return (
       <>
-        <Icon id={'account_circle_24dp_1F1F1F'} />
-        <Icon id={'search_24dp_1F1F1F'} />
-        <Icon id={'settings_24dp_1F1F1F'} />
+        {iconIdList.map((id) => (
+          <div key={id}>
+            <Icon id={id} />
+            {id}
+          </div>
+        ))}
       </>
     );
   },
