@@ -33,8 +33,11 @@ for file in "$ICONS_DIR"/*.svg; do
       viewBox='viewBox="0 0 24 24"'
     fi
 
-    # <symbol>에 SVG 내용을 삽입
+    # SVG 내용 수정: fill="none"을 제외한 다른 fill 속성을 fill="currentColor"로 변경
     svg_content=$(cat "$file")
+    svg_content=$(echo "$svg_content" | sed 's/fill="\([^"]*[^none]\)"/fill="currentColor"/g')
+
+    # <symbol>에 SVG 내용을 삽입
     echo "  <symbol id=\"$id\" $viewBox>$svg_content</symbol>" >> "$OUTPUT_SVG"
 
     # ICON_LIST에 아이콘 추가

@@ -12,7 +12,7 @@ type TIcon = {
 
 const Icon = ({ id, size = 24, color = 'currentColor' }: TIcon) => {
   return (
-    <svg width={size} height={size} fill={color} aria-hidden="true">
+    <svg width={size} height={size} style={{ color }} aria-hidden="true">
       <use href={`${SPRITE_IMAGE_PATH}#${id}`} />
     </svg>
   );

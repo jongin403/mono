@@ -23,7 +23,7 @@ export const OneItem: Story = {
       <>
         {iconIdList.map((id) => (
           <div key={id}>
-            <Icon id={id} />
+            <Icon id={id} size={50} color={'skyblue'} />
             {id}
           </div>
         ))}
