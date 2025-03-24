@@ -29,15 +29,8 @@ for file in "$ICONS_DIR"/*.svg; do
       viewBox='viewBox="0 0 24 24"'
     fi
 
-    # # SVG 태그에서 <svg>와 </svg>를 제거하고, 내용만 추출하여 symbol 안에 넣기
-    # svg_content=$(sed '1,/<\/svg>/d' "$file" | sed '/<svg>/d')
-
     # # <symbol>에 SVG 내용을 삽입
-    # echo "  <symbol id=\"$id\" $viewBox>$svg_content</symbol>" >> "$OUTPUT_FILE"
-    # SVG 내용 추출 (첫 줄(<svg>)과 마지막 줄(</svg>)을 포함하여 전체 내용 추출)
     svg_content=$(cat "$file")
-
-    # <symbol>에 SVG 내용을 삽입
     echo "  <symbol id=\"$id\" $viewBox>$svg_content</symbol>" >> "$OUTPUT_FILE"
   fi
 done
