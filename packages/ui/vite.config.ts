@@ -10,6 +10,15 @@ export default defineConfig({
     },
     outDir: 'dist',
     sourcemap: true,
+    rollupOptions: {
+      external: ['react', 'react-dom'], // ✅ react가 번들되지 않도록 설정
+    },
   },
-  plugins: [dts({ insertTypesEntry: true })],
+  plugins: [
+    dts({
+      entryRoot: 'src',
+      outDir: 'dist',
+      insertTypesEntry: true,
+    }),
+  ],
 });

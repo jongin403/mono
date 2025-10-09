@@ -1,7 +1,7 @@
-import { useState } from 'react';
+'use client';
 
 export function CounterButton() {
-  const [count, setCount] = useState(0);
+  //const [count, setCount] = useState(0);
 
   return (
     <div
@@ -26,9 +26,6 @@ export function CounterButton() {
       </p>
       <div>
         <button
-          onClick={() => {
-            setCount((c) => c + 1);
-          }}
           style={{
             background: 'black',
             color: 'white',
@@ -40,7 +37,7 @@ export function CounterButton() {
           }}
           type="button"
         >
-          Count: {count}
+          Count:
         </button>
       </div>
     </div>

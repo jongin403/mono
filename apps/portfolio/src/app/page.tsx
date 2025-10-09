@@ -1,6 +1,5 @@
 import { log } from '@repo/logger';
-import { Link } from '@repo/ui/link';
-import { CounterButton } from '@repo/ui/counter-button';
+import { Icon } from '@repo/ui';
 
 export const metadata = {
   title: 'Portfolio | Kitchen Sink',
@@ -15,16 +14,9 @@ export default function Store() {
         Portfolio <br />
         <span>Kitchen Sink</span>
       </h1>
-      <CounterButton />
+      {/* <CounterButton /> */}
       <p className="description">
-        Built With{' '}
-        <Link href="https://turbo.build/repo" newTab>
-          Turborepo
-        </Link>
-        {' & '}
-        <Link href="https://nextjs.org/" newTab>
-          Next.js
-        </Link>
+        <Icon id={'AccountCircle'}></Icon>
       </p>
     </div>
   );
