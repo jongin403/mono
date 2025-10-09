@@ -1,0 +1,46 @@
+name: Example Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: '배포할 브랜치'
+        required: true
+        default: 'develop'
+        type: string
+      staging_server:
+        description: '스테이징 서버 선택'
+        required: true
+        default: 'spring'
+        type: choice
+        options:
+          - spring
+          - summer
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 입력값을 Slack ID로 변환
+        id: get-slack-id
+        uses: jongin403/slack-id-mapping-action@main
+        with:
+          input-value: ${{ github.triggering_actor }}
+
+      - name: 결과 출력
+        run: |
+          echo "성공 여부: ${{ steps.get-slack-id.outputs.success }}"
+          echo "Slack ID: ${{ steps.get-slack-id.outputs.slack-id }}"
+          echo "에러 메시지: ${{ steps.get-slack-id.outputs.error-message }}"
+
+      - name: 슬랙 알림
+        uses: rtCamp/action-slack-notify@master
+        env:
+          SLACK_WEBHOOK: ${{ secrets.DEPLOY_NOTI_BOT_WEBHOOK_URL }}
+          SLACK_USERNAME: '배포 알림봇'
+          SLACK_ICON_EMOJI: ':bell:'
+          SLACK_COLOR: '#228B22'
+          SLACK_LINK_NAMES: true
+          SLACK_MESSAGE: '<@${{ steps.get-slack-id.outputs.slack-id }}> 님이 배포'
+          SLACK_TITLE: '타이틀'
+          SLACK_FOOTER: '푸터'
