@@ -1,0 +1,52 @@
+{
+  "name": "@repo/shadcn-component",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "sideEffects": [
+    "./dist/styles.css",
+    "./src/styles/globals.css"
+  ],
+  "files": [
+    "dist",
+    "src/components",
+    "src/lib",
+    "src/styles"
+  ],
+  "scripts": {
+    "build": "pnpm build:ts && pnpm build:styles",
+    "build:ts": "tsup",
+    "build:styles": "tailwindcss -c tailwind.config.ts -i ./src/styles/globals.css -o ./dist/styles.css --minify",
+    "dev": "tsup --watch",
+    "lint": "eslint src",
+    "typecheck": "tsc --noEmit",
+    "shadcn": "shadcn-ui --config components.json"
+  },
+  "peerDependencies": {
+    "@types/react": ">=18",
+    "@types/react-dom": ">=18",
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "dependencies": {
+    "@radix-ui/react-accordion": "^1.2.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.473.0",
+    "tailwind-merge": "^2.5.5",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.19.0",
+    "postcss": "^8.4.49",
+    "shadcn-ui": "^0.9.5",
+    "tailwindcss": "^3.4.17",
+    "tsup": "^8.2.4",
+    "typescript": "5.7.3"
+  }
+}
