@@ -194,6 +194,9 @@ importers:
 
   apps/design-system:
     dependencies:
+      '@repo/shadcn-component':
+        specifier: workspace:*
+        version: link:../../packages/shadcn-component
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui

@@ -13,6 +13,13 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@repo/shadcn-component": [
+        "../../packages/shadcn-component/src/index.ts"
+      ],
+      "@repo/shadcn-component/*": ["../../packages/shadcn-component/src/*"]
+    },
 
     /* Linting */
     "strict": true,
